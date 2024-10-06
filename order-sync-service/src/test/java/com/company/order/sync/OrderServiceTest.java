@@ -1,6 +1,7 @@
 package com.company.order.sync;
 
 import com.company.order.model.Order;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 public class OrderServiceTest {
 
+    @Disabled
+    // Test disabled by default as it requires running instance of the other service
     @Test
     void shouldCallRealInstance() {
         RestTemplate restTemplate = new RestTemplate();
