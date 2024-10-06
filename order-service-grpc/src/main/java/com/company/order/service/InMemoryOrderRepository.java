@@ -1,7 +1,8 @@
 package com.company.order.service;
 
-import com.company.order.model.Order;
-import com.company.order.model.OrderItem;
+import com.company.order.api.Order;
+import com.company.order.api.OrderItem;
+import com.company.order.api.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,15 +13,21 @@ class InMemoryOrderRepository implements OrderRepository {
     private List<Order> orders;
 
     public InMemoryOrderRepository() {
-        this.orders = List.of(
-                new Order("order1", List.of(
-                        new OrderItem("1", "1"),
-                        new OrderItem("2", "3")),
-                        "1"),
-                new Order("order2", List.of(
-                        new OrderItem("1", "2")),
-                        "2")
-        );
+        this.orders = List.of(Order.newBuilder()
+                .addOrderItems(OrderItem.newBuilder()
+                        .setId("1")
+                        .setProduct(Product.newBuilder()
+                                .setId("p1")
+                                .setName("Shoe")
+                        )
+                )
+                .addOrderItems(OrderItem.newBuilder()
+                        .setId("2")
+                        .setProduct(Product.newBuilder()
+                                .setId("p2")
+                                .setName("Shirt")
+                        )
+                ).build());
     }
 
     @Override
