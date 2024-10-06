@@ -18,9 +18,10 @@ public class OrderServiceInProcessTest {
 
     @BeforeAll
     static void startOrderService() throws IOException, InterruptedException {
-        var serviceJarFile = "order-service-grpc-0.1.0-SNAPSHOT.jar";
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", "target/" + serviceJarFile);
+        var serviceJarFile = "order-service-grpc.jar";
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", "target/service/" + serviceJarFile);
         processBuilder.inheritIO();
+        // TODO: add error handling
         process = processBuilder.start();
 
         // Wait for the service to start
