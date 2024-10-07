@@ -41,6 +41,14 @@
             <!-- TODO: the version should be inherited -->
             <version>3.25.1</version>
         </dependency>
+
+        <!-- hack, this version should be inherited-->
+        <dependency>
+            <artifactId>grpc-api</artifactId>
+            <groupId>io.grpc</groupId>
+            <version>1.63.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

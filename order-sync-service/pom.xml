@@ -41,6 +41,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <artifactId>grpc-api</artifactId>
+            <groupId>io.grpc</groupId>
+            <version>1.63.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -70,8 +76,8 @@
                             <artifactId>order-service-grpc</artifactId>
                             <version>0.1.0-SNAPSHOT</version>
                             <type>jar</type>
-<!--                            <overWrite>true</overWrite>-->
-<!--                            <outputDirectory>${project.build.directory}/service</outputDirectory>-->
+                            <!--                            <overWrite>true</overWrite>-->
+                            <!--                            <outputDirectory>${project.build.directory}/service</outputDirectory>-->
                             <destFileName>order-service-grpc.jar</destFileName>
                         </artifactItem>
                     </artifactItems>

@@ -41,10 +41,5 @@ public class OrderServiceInProcessTest {
         process.destroy();
     }
 
-    // A separate representation is needed as GRPC model cannot be used directly without custom message serializer
-    private record JsonOrder(String id, List<JsonOrderItem> orderItems) {
-    }
 
-    private record JsonOrderItem(String id) {
-    }
 }
