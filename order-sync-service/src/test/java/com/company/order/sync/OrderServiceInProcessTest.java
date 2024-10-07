@@ -1,6 +1,5 @@
 package com.company.order.sync;
 
-import com.company.order.model.Order;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OrderServiceInProcessTest {
     private static Process process;
-    private static final String URL = "http://localhost:8080/orders";
+    private static final String REST_URL = "http://localhost:8080/orders";
 
     @BeforeAll
     static void startOrderService() throws IOException, InterruptedException {
@@ -29,9 +28,9 @@ public class OrderServiceInProcessTest {
     }
 
     @Test
-    void retrieveOrders() {
+    void retrieveOrdersJson() {
         RestTemplate restTemplate = new RestTemplate();
-        Order[] orders = restTemplate.getForObject(URL, Order[].class);
+        JsonOrder[] orders = restTemplate.getForObject(REST_URL, JsonOrder[].class);
 
         assertNotNull(orders, "Orders should not be null");
         System.out.println(List.of(orders));
@@ -40,5 +39,12 @@ public class OrderServiceInProcessTest {
     @AfterAll
     static void stopOrderService() {
         process.destroy();
+    }
+
+    // A separate representation is needed as GRPC model cannot be used directly without custom message serializer
+    private record JsonOrder(String id, List<JsonOrderItem> orderItems) {
+    }
+
+    private record JsonOrderItem(String id) {
     }
 }

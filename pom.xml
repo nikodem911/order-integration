@@ -14,7 +14,6 @@
     </properties>
 
     <modules>
-      <module>order-model</module>
       <module>order-service-api</module>
 	  <module>order-service-grpc</module>
 	  <module>order-sync-service</module>

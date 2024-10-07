@@ -1,11 +1,11 @@
 package com.company.order.service;
 
-import com.company.order.api.Order;
+import com.google.protobuf.MessageOrBuilder;
+import com.google.protobuf.util.JsonFormat;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -18,8 +18,13 @@ public class RestOrderController {
     }
 
     @GetMapping("/orders")
-    List<Order> findAll() {
+    String findAll() {
         log.info("Calling REST controller - findAll");
-        return orderService.findAll();
+        return orderService.findAll().stream().map(this::toJson).toList().toString();
+    }
+
+    @SneakyThrows
+    private String toJson(MessageOrBuilder object) {
+        return JsonFormat.printer().print(object);
     }
 }
